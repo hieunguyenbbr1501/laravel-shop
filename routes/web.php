@@ -21,10 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::match(['get','post'],'/logout','AdminController@logout');
 Route::group(['middleware'=>'auth'], function(){
     //Product Routes
-    Route::get('/admin/products', 'AdminController@viewProducts');
-    Route::match(['get','post'], '/admin/add-products', 'AdminController@addProducts');
+    Route::get('/admin/products', 'ProductsController@viewProducts');
+    Route::match(['get','post'], '/admin/add-products', 'ProductsController@addProducts');
+    Route::get('/admin/delete-product/{id}', 'ProductsController@deleteProducts');
 
     //Brand Routes
-    Route::get('admin/brands', 'AdminController@viewBrands');
-    Route::match(['get', 'post'], '/admin/add-brands', 'AdminController@addBrands');
+    Route::get('admin/brands', 'BrandController@viewBrands');
+    Route::match(['get', 'post'], '/admin/add-brands', 'BrandController@addBrands');
 });

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
@@ -43,7 +43,7 @@ class ProductsController extends Controller
     			}
             }
             $product->save();
-            return view('admin/add_product')->with('success', 'Product has been added!');
+            return back()->with('success', 'Product has been added!');
         }
         $brands = Brand::get();
     	$brands_dropdown = "<option value='' selected disabled>Select</option>";
@@ -52,5 +52,9 @@ class ProductsController extends Controller
         }
     	
         return view('admin/add_products')->with(compact('brands_dropdown'));
+    }
+    public function deleteProducts($id = null){
+        Product::where(['id'=>$id])->delete();
+        return back()->with('info', 'Product has been deleted');
     }
 }
