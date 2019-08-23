@@ -57,4 +57,33 @@ class ProductsController extends Controller
         Product::where(['id'=>$id])->delete();
         return back()->with('info', 'Product has been deleted');
     }
+    public function editProducts($id = null, Request $request){
+        if($request->isMethod('post')){
+            $data = array_filter($request->only('name', 'brand', 'code', 'color', 'price', 'discount', 'image'));
+            if($request->hasFile('image')){
+    			$image_tmp = Input::file('image');
+    			if($image_tmp->isValid()){
+    				$extension = $image_tmp->getClientOriginalExtension();
+    				$filename = rand(111,99999).'.'.$extension;
+    				$image_path = 'img/'.$filename;
+    	
+
+    				Image::make($image_tmp)->save($image_path);
+    
+
+    				// Store image name in products table
+
+                }
+                Product::where('id', $id)->update($data);
+                Product::where('id', $id)->update(['image' => $filename]);
+                return back()->with('success', 'Product info has been updated');
+            }
+        }
+        $brands = Brand::get();
+    	$brands_dropdown = "<option value='' selected disabled>Select</option>";
+    	foreach($brands as $brand){
+    		$brands_dropdown .= "<option value='".$brand->id."'>".$brand->name."</option>";
+        }
+        return view('admin.edit_products')->with(compact('brands_dropdown'));
+    }
 }

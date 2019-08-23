@@ -43,7 +43,7 @@
                       <img src="{{ asset('/img/'.$product->image) }}" style="width:60px;">
                     @endif
                   </td>
-                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('/admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-mini">Delete</a> <a id="Addattr" href="{{ url('/admin/add-attribute/'.$product->id) }}" class="btn btn-primary btn-mini">Attribute</a></td>
+                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/edit-products/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('/admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-mini">Delete</a> </td>
                 </tr>
                     <div id="myModal{{ $product->id }}" class="modal hide">
                       <div class="modal-header">

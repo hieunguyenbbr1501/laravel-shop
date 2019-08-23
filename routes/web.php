@@ -24,8 +24,11 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/admin/products', 'ProductsController@viewProducts');
     Route::match(['get','post'], '/admin/add-products', 'ProductsController@addProducts');
     Route::get('/admin/delete-product/{id}', 'ProductsController@deleteProducts');
+    Route::match(['get','post'],'/admin/edit-products/{id}', 'ProductsController@editProducts');
 
     //Brand Routes
     Route::get('admin/brands', 'BrandController@viewBrands');
     Route::match(['get', 'post'], '/admin/add-brands', 'BrandController@addBrands');
+    Route::get('admin/delete-brand/{id}', 'BrandController@deleteBrands');
+    Route::match(['get', 'post'], 'admin/edit-brands/{id}', 'BrandController@editBrands');
 });
