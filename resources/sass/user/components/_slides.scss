@@ -1,0 +1,40 @@
+.slider {
+    width: 246px;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    display: block;
+    img {
+        height: 298px;
+        width: 100%;
+        max-width: 246px;
+    }
+    @include slider-background;
+    & h4,
+    & .nike {
+        @include link-hover;
+    }
+}
+
+@for $i from 1 through 4 {
+    .slider-background-#{$i} {
+        width: 20%;
+        max-width: 246px;
+        height: 298px;
+    }
+}
+
+.nike {
+    color: $black;
+}
+
+.floater-stars {
+    margin-top: 4px;
+    margin-bottom: -8px;
+}
+
+.fa-star {
+    color: rgb(255, 200, 8);
+    font-size: 15px;
+    line-height: 3.333;
+    text-align: center;
+}

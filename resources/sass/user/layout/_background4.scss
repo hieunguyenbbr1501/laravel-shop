@@ -1,0 +1,137 @@
+                .background-4 {
+                    background: url(../images/background-4.png);
+                    background-size: contain;
+                    height: 900px;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    z-index: 10;
+                    .floater-2 {
+                        background: url(../images/floater-BG.png);
+                        top: -70px;
+                        position: relative;
+                        z-index: 100;
+                        width: 100%;
+                        max-width: $max-width;
+                        margin: 0 auto;
+                        font-size: 15px;
+                        text-align: center;
+                        .floater-2-brands {
+                            width: 100%;
+                            .floater-2-brands-container {
+                                width: 100%;
+                                max-width: $content-width;
+                                margin: 0 auto;
+                                padding-top: 150px;
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: space-between;
+                                border-bottom: $bottom-border;
+                                .floater-2-brand-item-1 {
+                                    width: 365px;
+                                    h1 {
+                                        font-weight: $extra-bold;
+                                        color: $black;
+                                        @include link-hover;
+                                    }
+                                    h4 {
+                                        color: $black;
+                                        @include link-hover;
+                                    }
+                                    .aloalo {
+                                        color: #a9a9a9;
+                                        p {
+                                            @include link-hover;
+                                        }
+                                    }
+                                }
+                                .floater-2-brand-index,
+                                .floater-2-brand-index1 {
+                                    max-width: 365px;
+                                    margin-top: 10px;
+                                    text-align: left;
+                                    display: flex;
+                                    justify-content: left;
+                                    padding-bottom: 40px;
+                                }
+                                .floater-2-brand-index {
+                                    border-bottom: $bottom-border;
+                                }
+                                @include media1103 {
+                                    justify-content: center;
+                                }
+                                @include media697 {
+                                    padding-top: 50px;
+                                }
+                                @include media473 {
+                                    width: 90%;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                }
+                            }
+                            #our-brands-2 {
+                                @include media1103 {
+                                    display: none;
+                                }
+                            }
+                        }
+                        .floater-2-searchbar {
+                            padding-bottom: 40px;
+                            line-height: 2;
+                            margin-top: 80px;
+                            h2 {
+                                font-weight: $bold;
+                            }
+                            .floater-2-searcher {
+                                margin-top: 30px;
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: center;
+                                .searchbar {
+                                    padding: 5px;
+                                    border-style: solid;
+                                    border-width: 1px;
+                                    border-color: rgb(161, 161, 161);
+                                    height: 32px;
+                                    width: 500px;
+                                    @include media550 {
+                                        width: 90%;
+                                    }
+                                }
+                                button {
+                                    font-weight: 700;
+                                    border: none;
+                                    color: white;
+                                    padding: 4px 15px;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin-left: 30px;
+                                    border: 2px solid rgb(249, 35, 111);
+                                    @include media697 {
+                                        margin-top: 30px;
+                                        margin-left: 0;
+                                        padding: 9px 19px;
+                                    }
+                                }
+                            }
+                        }
+                        @include media1103 {
+                            top: 0;
+                        }
+                    }
+                    @include media1103 {
+                        top: 0;
+                    }
+                    @include media1103 {
+                        background: none;
+                    }
+                    @include media697 {
+                        height: auto;
+                    }
+                }
+                
+                .floater-2-sale {
+                    @include media473 {
+                        width: 100%;
+                    }
+                }

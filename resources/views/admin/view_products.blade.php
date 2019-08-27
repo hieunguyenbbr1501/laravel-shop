@@ -40,7 +40,7 @@
                   <td>{{ $product->price }}</td>
                   <td>
                     @if(!empty($product->image))
-                      <img src="{{ asset('/img/'.$product->image) }}" style="width:60px;">
+                      <img src="{{ asset('/img/products/'.$product->image) }}" style="width:60px;">
                     @endif
                   </td>
                   <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/edit-products/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delCat" href="{{ url('/admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-mini">Delete</a> </td>

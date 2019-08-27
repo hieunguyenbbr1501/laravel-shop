@@ -18,8 +18,63 @@ class ProductsController extends Controller
         return view('admin.view_products')->with(compact('products'));
     }
     public function addProducts(Request $request){
-        if($request->isMethod('post')){
-            $data = $request->all();
+        $brands = Brand::get();
+    	//$brands_dropdown = "<option value='' selected disabled>Select</option>";
+    	//foreach($brands as $brand){
+    	//	$brands_dropdown .= "<option value='".$brand->id."'>".$brand->name."</option>";
+        //}
+    	
+        return view('admin/add_products')->with(compact('brands'));
+    }
+    public function deleteProducts($id = null){
+        if(Product::where(['id'=>$id])->delete()){
+
+            return back()->with('info', 'Product has been deleted');
+        }
+        else{
+            return back()->with('failed', 'Couldnt delete the product');
+        }
+    }
+    public function editProducts($id = null){
+        $brands = Brand::get();
+        $productDetails = Product::where('id', $id)->first();
+    	//$brands_dropdown = "<option value='' selected disabled>Select</option>";
+    	//foreach($brands as $brand){
+    	//	$brands_dropdown .= "<option value='".$brand->id."'>".$brand->name."</option>";
+        //}
+        return view('admin.edit_products')->with(compact('brands','productDetails'));
+    }
+    public function updateProducts($id = null, Request $request){
+        $data = array_filter($request->only('name', 'brand', 'code', 'color', 'price', 'discount'));
+        if($request->hasFile('image')){
+            $image_tmp = Input::file('image');
+            if($image_tmp->isValid()){
+                $extension = $image_tmp->getClientOriginalExtension();
+                $filename = time().rand(10,99).'.'.$extension;
+                $data['image']  =$filename;
+                $image_path = 'img/products/'.$filename;
+                Image::make($image_tmp)->save($image_path);
+                // Store image name in products table
+            }
+            if(Product::where('id', $id)->update($data)){
+                return redirect()->back()->with('success', 'Product info has been updated');
+            }
+            else{
+                return redirect()->back()->with('failed','Cannot update product info');
+            }
+            
+        }
+    }
+    public function insertProducts(Request $request){
+        $data = $request->validate([
+            'product_name'=>"required",
+            'product_code'=>"required",
+            'product_color'=>"required",
+            'price'=>"required",
+            'brand'=>"required",
+            'discount'=>"required",
+            'image'=>"required"
+        ]);
             $product = new Product;
             $product->name = $data['product_name'];
             $product->code = $data['product_code'];
@@ -31,59 +86,16 @@ class ProductsController extends Controller
     			$image_tmp = Input::file('image');
     			if($image_tmp->isValid()){
     				$extension = $image_tmp->getClientOriginalExtension();
-    				$filename = rand(111,99999).'.'.$extension;
-    				$image_path = 'img/'.$filename;
-    	
-
+    				$filename = time().rand(10,99).'.'.$extension;
+    				$image_path = 'img/products/'.$filename;
     				Image::make($image_tmp)->save($image_path);
-    
-
     				// Store image name in products table
     				$product->image = $filename;
     			}
             }
-            $product->save();
-            return back()->with('success', 'Product has been added!');
-        }
-        $brands = Brand::get();
-    	$brands_dropdown = "<option value='' selected disabled>Select</option>";
-    	foreach($brands as $brand){
-    		$brands_dropdown .= "<option value='".$brand->id."'>".$brand->name."</option>";
-        }
-    	
-        return view('admin/add_products')->with(compact('brands_dropdown'));
-    }
-    public function deleteProducts($id = null){
-        Product::where(['id'=>$id])->delete();
-        return back()->with('info', 'Product has been deleted');
-    }
-    public function editProducts($id = null, Request $request){
-        if($request->isMethod('post')){
-            $data = array_filter($request->only('name', 'brand', 'code', 'color', 'price', 'discount', 'image'));
-            if($request->hasFile('image')){
-    			$image_tmp = Input::file('image');
-    			if($image_tmp->isValid()){
-    				$extension = $image_tmp->getClientOriginalExtension();
-    				$filename = rand(111,99999).'.'.$extension;
-    				$image_path = 'img/'.$filename;
-    	
-
-    				Image::make($image_tmp)->save($image_path);
-    
-
-    				// Store image name in products table
-
-                }
-                Product::where('id', $id)->update($data);
-                Product::where('id', $id)->update(['image' => $filename]);
-                return back()->with('success', 'Product info has been updated');
+            if($product->save()){
+                return redirect()->back()->with('success', 'Product has been added!');
             }
-        }
-        $brands = Brand::get();
-    	$brands_dropdown = "<option value='' selected disabled>Select</option>";
-    	foreach($brands as $brand){
-    		$brands_dropdown .= "<option value='".$brand->id."'>".$brand->name."</option>";
-        }
-        return view('admin.edit_products')->with(compact('brands_dropdown'));
+            else return redirect()->back()->with('failed', 'Coudnt add a new product, please try agian');
     }
 }

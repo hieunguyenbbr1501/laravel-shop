@@ -1,0 +1,198 @@
+.floater-1-banner-1 {
+    background: url(../images/banner-1.png);
+    background-size: cover;
+    padding-bottom: 2%;
+}
+
+.floater-1-banner-2 {
+    background: url(../images/banner-2.png);
+    padding-bottom: 2%;
+    background-size: cover;
+}
+
+@for $i from 1 through 2 {
+    .floater-1-banner-#{$i} {
+        background-size: cover;
+        width: 45%;
+        @include media950 {
+            padding-bottom: 8%;
+            width: 70%;
+            margin-bottom: 30px;
+        }
+        @include media697 {
+            width: 90%;
+        }
+        @include media550 {
+            width: 100%;
+            padding-bottom: 4%;
+        }
+    }
+    .floater-1-banner-#{$i}-text {
+        width: 50%;
+        color: #3d3d3d;
+        margin-left: 50px;
+        p {
+            @include media473 {
+                font-size: 14px;
+            }
+        }
+    }
+    .floater-banner-carnaval-#{$i} {
+        margin-top: -10px;
+        @include pink-gradient-text;
+    }
+    .floater-banner-fashion-#{$i} {
+        margin-top: 20px;
+    }
+    .floater-banner-fashion-#{$i},
+    .floater-banner-carnaval-#{$i} {
+        font-weight: $extra-bold;
+        font-size: calc(1em + 1.8vw);
+        letter-spacing: -0.2vw;
+    }
+    .floater-banner-button-#{$i} {
+        @include pink-btn;
+        margin-top: 50px;
+        padding: 8px 17px;
+        font-size: 20px;
+        @include media473 {
+            margin-top: 5%;
+            padding: 7px 10px;
+        }
+    }
+}
+
+.background-3-news-item {
+    margin-bottom: 30px;
+    width: 30%;
+    margin-left: 5px;
+    margin-right: 5px;
+    img {
+        width: 100%;
+    }
+    .background-3-news-item-index-container {
+        background: #ffffff;
+        width: 100%;
+        margin-top: -5px;
+        .background-3-news-item-index {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 10px;
+            font-size: 18px;
+            h2 {
+                color: rgb(81, 81, 81);
+                font-size: 18px;
+                @include link-hover;
+                @include media830 {
+                    font-size: calc(5px + 3vw);
+                }
+            }
+            .index-subheader {
+                margin-top: 5px;
+                font-size: 16px;
+            }
+            .index-description {
+                margin-top: 30px;
+                font-size: 16px;
+            }
+            .background-3-news-item-button {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 25px;
+                .btn {
+                    padding: 7px 15px;
+                    height: 48px;
+                    margin-top: 40px;
+                    font-size: 16px;
+                }
+                .background-3-news-item-icons {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 65px;
+                    .fa-heart {
+                        padding-right: 10px;
+                        color: $link-color;
+                        transition: width 2s, height 2s;
+                        @include media830 {
+                            font-size: 30px;
+                        }
+                        @include media697 {
+                            font-size: 24px;
+                        }
+                    }
+                    .fa-comment {
+                        padding-left: 10px;
+                        color: $link-color;
+                        transition: color 0.5 ease;
+                        @include media830 {
+                            font-size: 30px;
+                        }
+                        @include media697 {
+                            font-size: 24px;
+                        }
+                    }
+                    .vertical-border {
+                        @include media830 {
+                            height: 30px;
+                        }
+                    }
+                }
+                @include media830 {
+                    button {
+                        padding: 0px 20px !important;
+                        font-size: calc(10px + 2vw) !important;
+                    }
+                }
+                @include media473 {
+                    button {
+                        font-size: 16px;
+                        padding: 7px 15px;
+                    }
+                }
+            }
+        }
+    }
+    @include media1103 {
+        width: 40%;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+    @include media950 {
+        width: 70%;
+    }
+    @include media550 {
+        width: 80%;
+    }
+}
+
+.floater-2-brand-index,
+.floater-2-brand-index1 {
+    .floater-2-brand-image {
+        width: 91px;
+        height: 95px;
+        @include slider-background;
+        margin-right: 30px;
+        img {
+            width: 91px;
+            height: 95px;
+        }
+    }
+}
+
+#slider-3 {
+    @include media1001 {
+        display: none;
+    }
+}
+
+#slider-2 {
+    @include media770 {
+        display: none;
+    }
+}
+
+#slider-4 {
+    @include media550 {
+        display: none;
+    }
+}

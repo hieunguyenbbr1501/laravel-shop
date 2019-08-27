@@ -1,0 +1,234 @@
+.body1 {
+    background: url('../images/background-body.png') no-repeat;
+    height: 1057px;
+    background-size: 100% 100%;
+    z-index: 1;
+    @include media1170 {
+        background: url(../images/background-body-alt.png) no-repeat;
+        background-size: 100% 100%;
+        height: auto;
+        padding-bottom: 250px;
+    }
+    @include media697 {
+        padding-bottom: 100px;
+    }
+}
+
+.top-body {
+    background: url(../images/background-header-top.png);
+    background-size: cover;
+}
+
+.top-body-1 {
+    width: 100%;
+    @include media697 {
+        display: none;
+    }
+}
+
+.top-body-1-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    div {
+        margin-top: 22px;
+    }
+    p {
+        margin-top: 26px;
+    }
+}
+
+.top-body-language,
+.top-body-currency {
+    margin-top: 22px;
+    color: $black;
+    transition: $link-transition;
+    @include link-hover;
+}
+
+.top-body-currency {
+    margin-left: 20px;
+}
+
+.hr-container {
+    width: 90%;
+    margin: 20px auto auto;
+    hr {
+        border-top: 2px solid black;
+    }
+    @include media697 {
+        display: none;
+    }
+}
+
+.top-body-2 {
+    width: 100%;
+    display: flex;
+    font-family: $font;
+    font-weight: $bold;
+    h2 {
+        font-weight: $extra-bold;
+    }
+}
+
+.top-body-2-container {
+    width: 90%;
+    display: flex;
+    margin: 10px auto 10px;
+    justify-content: space-between;
+}
+
+.top-body-2-anchors {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.list-item {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.fa-search,
+.fa-shopping-cart,
+.fa-list {
+    margin-left: 27px;
+    color: $black;
+    @include link-hover;
+    @include media950 {
+        margin-left: 0;
+    }
+}
+
+.fa-list {
+    @include media473 {
+        font-size: 30px;
+    }
+}
+
+.top-body-2-item {
+    color: #000000;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: $link-transition;
+    @include link-hover;
+}
+
+.body-banner {
+    margin: 282px auto;
+    width: 100%;
+    max-width: $max-width;
+    @include media950 {
+        margin-top: 100px;
+    }
+}
+
+.banner-info {
+    width: 60%;
+    text-align: center;
+    p {
+        font-size: 10px;
+        letter-spacing: 0.05cm;
+        margin-top: 20px;
+        margin-bottom: 100px;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        @include media1170 {
+            width: 60%;
+            font-size: 16px;
+        }
+        @include media473 {
+            width: 80%;
+        }
+    }
+    @include media1170 {
+        width: 100%;
+    }
+}
+
+.banner-fashion {
+    font-size: calc(2.5em + 5vw);
+    font-weight: $extra-bold !important;
+    line-height: 0.721;
+    color: rgb(34, 34, 34);
+    letter-spacing: -4px;
+    line-height: 0.721;
+}
+
+.banner-carnaval {
+    @include pink-gradient-text;
+    font-weight: $extra-bold !important;
+    letter-spacing: -4px;
+    line-height: 0.721;
+}
+
+.banner-2022 {
+    font-size: 3em;
+    margin-left: 30px;
+}
+
+.span-2022 {
+    font-size: calc(0.5em + 2vw);
+    font-weight: 900;
+    line-height: 0.721;
+    letter-spacing: 10vw;
+    margin-left: 40px;
+}
+
+.banner-button {
+    font-size: 20px;
+    padding: 8px 17px;
+    @include media473 {
+        margin-top: 50px;
+    }
+}
+
+.fa-list {
+    @include media950 {
+        font-size: 20px;
+    }
+}
+
+.list-item {
+    @include media950 {
+        height: 30px;
+        display: list-item;
+        width: 100%;
+        text-align: left;
+        padding: 24px;
+        line-height: 24px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+}
+
+.nav {
+    @include media950 {
+        background: url(../images/background-header-top.png);
+        margin-top: 40px;
+        overflow: hidden;
+        list-style: none;
+        text-align: left;
+        z-index: 10;
+        width: 100%;
+        position: absolute;
+        /* This trasform moves the drawer off canvas. */
+        -webkit-transform: translate(100px, 0);
+        transform: translate(100px, 0);
+        /* Optionally, we animate the drawer. */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav.open {
+    @include media950 {
+        -webkit-transform: translate(-40vw, 0);
+        transform: translate(-40vw, 0);
+    }
+}
+
+fashion-span {
+    @include media950 {
+        line-height: 1;
+    }
+}

@@ -1,0 +1,48 @@
+.header {
+    background: url(../images/background-header.png) repeat 0 0;
+    width: 100%;
+    background-size: 100% 100%;
+    height: 74px;
+}
+
+.header-container {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.header-index {
+    width: 85%;
+    color: $white;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.header-x {
+    border: none;
+    margin-top: 20px;
+    height: 32px;
+    width: 32px;
+    line-height: 22px;
+    background-color: $white;
+    border-radius: 50%;
+    text-align: center;
+    transition: background-color 0.4s ease;
+    & a {
+        color: $black;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: $bold;
+        font-size: 18px;
+        text-decoration: none;
+        margin-top: -2px;
+    }
+    &:hover {
+        background-color: $black;
+        a {
+            color: $white;
+        }
+    }
+}

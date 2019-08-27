@@ -1,0 +1,23 @@
+.background-logo {
+    background: url(../images/background-logo.png);
+    height: 500px;
+    z-index: 1;
+    .logo-container {
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: $max-width;
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-between;
+        padding-top: 300px;
+        @include media830 {
+            padding-top: 230px;
+        }
+        @include media697 {
+            padding-top: 50px;
+        }
+    }
+    @include media697 {
+        height: auto;
+    }
+}

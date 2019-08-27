@@ -1,0 +1,45 @@
+.background-3 {
+    background: url(../images/background-3.png);
+    z-index: 1;
+    color: rgb(81, 81, 81);
+    height: 888px;
+    @include media1103 {
+        height: auto;
+        background-size: cover;
+    }
+}
+
+.background-3-index {
+    padding-top: 140px;
+    text-align: center;
+    line-height: 1.2;
+    color: black;
+    @include media830 {
+        padding: 70px;
+    }
+}
+
+.background-3-index h1 {
+    font-weight: $extra-bold;
+}
+
+.background-3-news {
+    margin-top: 30px;
+}
+
+.background-3-news-container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include media1103 {
+        justify-content: center;
+    }
+}
+
+.index-description,
+.index-subheader {
+    font-size: calc(5px + 2vw);
+}

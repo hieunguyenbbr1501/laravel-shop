@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -22,13 +20,26 @@ Route::match(['get','post'],'/logout','AdminController@logout');
 Route::group(['middleware'=>'auth'], function(){
     //Product Routes
     Route::get('/admin/products', 'ProductsController@viewProducts');
-    Route::match(['get','post'], '/admin/add-products', 'ProductsController@addProducts');
+    Route::get('/admin/add-products', 'ProductsController@addProducts');
+    Route::post('/admin/insert-products', 'ProductsController@insertProducts');
     Route::get('/admin/delete-product/{id}', 'ProductsController@deleteProducts');
-    Route::match(['get','post'],'/admin/edit-products/{id}', 'ProductsController@editProducts');
+    Route::get('/admin/edit-products/{id}', 'ProductsController@editProducts');
+    Route::post('/admin/update-products/{id}', 'ProductsController@updateProducts');
 
     //Brand Routes
     Route::get('admin/brands', 'BrandController@viewBrands');
-    Route::match(['get', 'post'], '/admin/add-brands', 'BrandController@addBrands');
-    Route::get('admin/delete-brand/{id}', 'BrandController@deleteBrands');
-    Route::match(['get', 'post'], 'admin/edit-brands/{id}', 'BrandController@editBrands');
+    Route::get('/admin/add-brands', 'BrandController@addBrands');
+    Route::post('admin/insert-brands', 'BrandController@store');
+    Route::post('admin/update-brands/{id}', 'BrandController@update');
+    Route::get('admin/delete-brands/{id}', 'BrandController@deleteBrands');
+    Route::get('admin/edit-brands/{id}', 'BrandController@editBrands');
+
+    //News Routes
+    Route::get('admin/news', 'NewsController@index');
+    Route::get('admin/add-news', 'NewsController@create');
+    Route::post('admin/store-news', 'NewsController@store');
+    Route::get('admin/edit-news/{id}', 'NewsController@edit');
+    Route::post('admin/update-news/{id}', 'NewsController@update');
+    Route::get('admin/delete-news/{id}', 'NewsController@destroy');
 });
+Route::get('/', 'HomePageController@index');

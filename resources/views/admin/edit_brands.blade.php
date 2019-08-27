@@ -14,7 +14,7 @@
             <h5>Edit Brand</h5>
           </div>
           <div class="widget-content nopadding">
-            <form class="form-horizontal" method="post" action="{{ url('/admin/edit-brands/.$brandDetails->id') }}" name="edit_Brand" id="edit_Brand" novalidate="novalidate"> {{ csrf_field() }}
+            <form class="form-horizontal" method="post" action="{{ url('/admin/update-brands/.$brandDetails->id') }}" name="edit_Brand" id="edit_Brand" novalidate="novalidate"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Brand Name</label>
                 <div class="controls">

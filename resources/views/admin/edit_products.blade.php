@@ -15,12 +15,15 @@
             <h5>Edit Product</h5>
           </div>
           <div class="widget-content nopadding">
-            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/edit-products/4') }}" name="add_product" id="add_product" novalidate="novalidate"> {{ csrf_field() }}
+            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/update-products/'.$productDetails->id) }}" name="add_product" id="add_product" novalidate="novalidate"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Brand</label>
                 <div class="controls">
                   <select name="brand" id="brand" style="width: 220px;">  
-                    <?php echo $brands_dropdown; ?>
+                  <option value='' selected disabled>Select</option>
+                  @foreach($brands as $brand)
+                  <option value="{{$brand->id}}">{{$brand->name}}</option>
+                  @endforeach  
                   </select>
                 </div>
               </div>

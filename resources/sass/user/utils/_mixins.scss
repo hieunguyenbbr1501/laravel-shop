@@ -1,0 +1,132 @@
+@mixin background($img) {
+    background-image: url('#{$path--rel}/#{$img}');
+}
+
+@mixin link-hover {
+    &:hover {
+        color: transparent;
+        background: -webkit-linear-gradient(rgb(249, 35, 111), rgb(249, 35, 70));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@mixin pink-btn {
+    background: -webkit-linear-gradient( rgb(249, 35, 70), rgb(249, 35, 111));
+    color: #fff;
+    border: none;
+    font-weight: 900;
+    border: 2px solid rgb(249, 35, 111);
+    text-decoration: none;
+    &:hover {
+        background: none;
+    }
+    &:hover a {
+        color: $link-color;
+    }
+}
+
+@mixin pink-gradient-text {
+    font-size: calc(2.5em + 5vw);
+    background: -webkit-linear-gradient(rgb(249, 35, 111), rgb(249, 35, 70));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin slider-background {
+    img {
+        display: block;
+        position: absolute;
+        transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+    img:nth-child(1) {
+        /* first <img> child of <div> */
+        filter: alpha(opacity=100);
+        /* IE stuff */
+        opacity: 1;
+        z-index: 2;
+    }
+    img:nth-child(2) {
+        /* second <img> child of <div> */
+        filter: alpha(opacity=0);
+        /* IE stuff */
+        opacity: 0;
+        z-index: 1;
+    }
+    &:hover {
+        img:nth-child(1) {
+            filter: alpha(opacity=0);
+            opacity: 0;
+            z-index: 1;
+        }
+        img:nth-child(2) {
+            filter: alpha(opacity=100);
+            opacity: 1;
+            z-index: 2;
+        }
+    }
+}
+
+@mixin media1170 {
+    @media screen and (max-width: 1170px) {
+        @content;
+    }
+}
+
+@mixin media1103 {
+    @media screen and (max-width: 1103px) {
+        @content;
+    }
+}
+
+@mixin media1001 {
+    @media screen and (max-width: 1001px) {
+        @content;
+    }
+}
+
+@mixin media950 {
+    @media screen and (max-width: 950px) {
+        @content;
+    }
+}
+
+@mixin media830 {
+    @media screen and (max-width: 830px) {
+        @content;
+    }
+}
+
+@mixin media770 {
+    @media screen and (max-width: 770px) {
+        @content;
+    }
+}
+
+@mixin media697 {
+    @media screen and (max-width: 697px) {
+        @content;
+    }
+}
+
+@mixin media550 {
+    @media screen and (max-width: 550px) {
+        @content;
+    }
+}
+
+@mixin media473 {
+    @media screen and (max-width: 473px) {
+        @content;
+    }
+}
+
+@mixin media325 {
+    @media screen and (max-width: 325px) {
+        @content;
+    }
+}

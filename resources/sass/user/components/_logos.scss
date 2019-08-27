@@ -1,0 +1,15 @@
+.logo-1 {
+    padding-bottom: 20px;
+    width: 15%;
+    margin: 0 auto;
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+    @include media830 {
+        width: 30%;
+    }
+    @include media550 {
+        width: 40%;
+    }
+}

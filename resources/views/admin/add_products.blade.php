@@ -15,54 +15,58 @@
             <h5>Add Product</h5>
           </div>
           <div class="widget-content nopadding">
-            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/add-products') }}" name="add_product" id="add_product" novalidate="novalidate"> {{ csrf_field() }}
+            <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/insert-products') }}" name="add_product" id="add_product" novalidate="novalidate"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Brand</label>
                 <div class="controls">
-                  <select name="brand" id="brand" style="width: 220px;">  
-                    <?php echo $brands_dropdown; ?>
+                  <select name="brand" id="brand" style="width: 220px;">
+                  <option value='' selected disabled>Select</option>
+                  @foreach($brands as $brand)
+                  <option value="{{$brand->id}}">{{$brand->name}}</option>
+                  @endforeach  
+                    
                   </select>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Product Name</label>
                 <div class="controls">
-                  <input type="text" name="product_name" id="product_name">
+                  <input type="text" name="product_name" id="product_name" required />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Product Code</label>
                 <div class="controls">
-                  <input type="text" name="product_code" id="product_code">
+                  <input type="text" name="product_code" id="product_code" required />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Product Color</label>
                 <div class="controls">
-                  <input type="text" name="product_color" id="product_color">
+                  <input type="text" name="product_color" id="product_color" required />
                 </div>
               </div>
               
               <div class="control-group">
                 <label class="control-label">Price</label>
                 <div class="controls">
-                  <input type="text" name="price" id="price">
+                  <input type="text" name="price" id="price" required />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Discount</label>
                 <div class="controls">
-                  <input type="text" name="discount" id="discount">
+                  <input type="text" name="discount" id="discount" required />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Image</label>
                 <div class="controls">
-                  <input type="file" name="image" id="image">
+                  <input type="file" name="image" id="image" required />
                 </div>
               </div>
               <div class="form-actions">
-                <input type="submit" value="Add Product" class="btn btn-success">
+                <button type="submit" value="Add Product" class="btn btn-success">Add Product</button>
               </div>
             </form>
           </div>
