@@ -7,7 +7,8 @@
     <title>Document</title>
     <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style_alt.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive_alt.css') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon.png') }}">
 
 
@@ -126,19 +127,26 @@
                                     </div>
                                     <p>Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
                                 </div>
-                                <div class="floater-products-items" id="sliders-container-1">
-                                    <div class="slider floater-products-item-1" id="slider-1">
-                                        <div class="slider-background-1">
+                                @for($i=1; $i<=4;$i++)
+
+                                @php
+                                $count = 1;
+                                @endphp
+
+                                <div class="floater-products-items" id="sliders-container-{{ $i }}">
+                                @foreach($productSlides as $productSlide)
+                                    <div class="slider floater-products-item-1" id="slider-{{ $count }}">
+                                        <div class="slider-background-{{ $count }}">
                                             <a href="#">
-                                                <img src="./images/product-1-s.jpeg">
-                                                <img src="./images/product-1-s-alt.jpeg">
+                                                <img src="{{ asset('img/products/'.$productSlide->image) }}">
+                                                <img src="{{ asset('img/products/'.$productSlide->image) }}">
                                             </a>
                                         </div>
                                         <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
+                                            <h4 id="prod-label">{{ $productSlide->name }}</h4>
                                         </a>
                                         <a href="#">
-                                            <p class="nike">Nike</p>
+                                            <p class="nike">{{ $productSlide->brand }}</p>
                                         </a>
                                         <div class="floater-stars">
                                             <p>
@@ -151,437 +159,16 @@
                                         </div>
 
                                         <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
+                                            <del style="color: #a9a9a9;">${{$productSlide->price}}</del> &nbsp;
+                                            <strong> ${{$productSlide->price*(100-$productSlide->discount)/100}}</strong>
                                         </p>
                                     </div>
-                                    <div class="slider floater-products-item-1" id="slider-2">
-                                        <div class="slider-background-2">
-                                            <a href="#">
-                                                <img src="./images/product-2-s.jpeg">
-                                                <img src="./images/product-2-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong>$69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-3">
-                                        <div class="slider-background-3">
-                                            <a href="#">
-                                                <img src="./images/product-3-s.jpeg">
-                                                <img src="./images/product-3-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <div class="floater-stars">
-                                                <p>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-4">
-                                        <div class="slider-background-4">
-                                            <a href="#">
-                                                <img src="./images/product-4-s.jpeg">
-                                                <img src="./images/product-4-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
+                                    <?php $count++; ?>
+                                @endforeach
+                                    
 
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
                                 </div>
-                                <div class="floater-products-items hidden-slides" id="sliders-container-2">
-                                    <div class="slider floater-products-item-1" id="slider-1">
-                                        <div class="slider-background-1">
-                                            <a href="#">
-                                                <img src="./images/product-4-s.jpeg">
-                                                <img src="./images/product-4-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-2">
-                                        <div class="slider-background-2">
-                                            <a href="#">
-                                                <img src="./images/product-1-s.jpeg">
-                                                <img src="./images/product-1-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong>$69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-3">
-                                        <div class="slider-background-3">
-                                            <a href="#">
-                                                <img src="./images/product-2-s.jpeg">
-                                                <img src="./images/product-2-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <div class="floater-stars">
-                                                <p>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-4">
-                                        <div class="slider-background-4">
-                                            <a href="#">
-                                                <img src="./images/product-3-s.jpeg">
-                                                <img src="./images/product-3-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="floater-products-items hidden-slides" id="sliders-container-3">
-                                    <div class="slider floater-products-item-1" id="slider-1">
-                                        <div class="slider-background-1">
-                                            <a href="#">
-                                                <img src="./images/product-3-s.jpeg">
-                                                <img src="./images/product-3-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-2">
-                                        <div class="slider-background-2">
-                                            <a href="#">
-                                                <img src="./images/product-4-s.jpeg">
-                                                <img src="./images/product-4-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong>$69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-3">
-                                        <div class="slider-background-3">
-                                            <a href="#">
-                                                <img src="./images/product-1-s.jpeg">
-                                                <img src="./images/product-1-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <div class="floater-stars">
-                                                <p>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-4">
-                                        <div class="slider-background-4">
-                                            <a href="#">
-                                                <img src="./images/product-2-s.jpeg">
-                                                <img src="./images/product-2-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="floater-products-items hidden-slides" id="sliders-container-4">
-                                    <div class="slider floater-products-item-1" id="slider-1">
-                                        <div class="slider-background-1">
-                                            <a href="#">
-                                                <img src="./images/product-2-s.jpeg">
-                                                <img src="./images/product-2-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-2">
-                                        <div class="slider-background-2">
-                                            <a href="#">
-                                                <img src="./images/product-3-s.jpeg">
-                                                <img src="./images/product-3-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong>$69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-3">
-                                        <div class="slider-background-3">
-                                            <a href="#">
-                                                <img src="./images/product-4-s.jpeg">
-                                                <img src="./images/product-4-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <div class="floater-stars">
-                                                <p>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="far fa-star"></i>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                    <div class="slider floater-products-item-1" id="slider-4">
-                                        <div class="slider-background-4">
-                                            <a href="#">
-                                                <img src="./images/product-1-s.jpeg">
-                                                <img src="./images/product-1-s-alt.jpeg">
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h4 id="prod-label">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#">
-                                            <p class="nike">Nike</p>
-                                        </a>
-                                        <div class="floater-stars">
-                                            <p>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </p>
-                                        </div>
-
-                                        <p class="floater-products-price">
-                                            <del style="color: #a9a9a9;">$74.00</del> &nbsp;
-                                            <strong> $69.00</strong>
-                                        </p>
-                                    </div>
-                                </div>
+                                @endfor
                                 <div class="caret-buttons">
                                     <span class="caret-button-prev" id="slider-prev" onclick="prevSlide()"><a><i class="fas fa-caret-left"></i></a></span>
                                     <span class="caret-button-next" id="slider-next" onclick="nextSlide()"><a><i class="fas fa-caret-right"></a></i></span>
@@ -598,17 +185,18 @@
                 </div>
                 <div class="background-3-news">
                     <div class="background-3-news-container">
+                    @foreach($news as $n)
                         <div class="background-3-news-item">
                             <a href="#">
-                                <img src="./images/news-1.png" alt="">
+                                <img src="{{ asset('img/news/'.$n->banner) }}" style="" alt="">
                             </a>
-                            <div class="background-3-news-item-index-container">
+                            <div class="background-3-news-item-index-container" style="">
                                 <div class="background-3-news-item-index">
                                     <a href="#">
-                                        <h2>Porem ipsum dolor sit ame</h2>
+                                        <h2>{{ $n->title }}</h2>
                                     </a>
-                                    <p class="index-subheader" style="color: rgb(168, 168, 168);">Lorem Ipsum. Proin gravida nibh</p>
-                                    <p class="index-description">Lorem Ipsum. Proin gravida nibh velit it’s a cold world out the Lorem Ipsum. Proin gravida nibh</p>
+                                    <p class="index-subheader" style="color: rgb(168, 168, 168);">{{ $n->sub }}</p>
+                                    <p class="index-description">{{ $n->content }}</p>
                                     <div class="background-3-news-item-button">
                                         <button class="btn"><a href="#">Read more</a></button>
                                         <div class="background-3-news-item-icons">
@@ -619,49 +207,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="background-3-news-item">
-                            <a href="#">
-                                <img src="./images/news-2.png" alt="">
-                            </a>
-                            <div class="background-3-news-item-index-container">
-                                <div class="background-3-news-item-index">
-                                    <a href="#">
-                                        <h2>Porem ipsum dolor sit ame</h2>
-                                    </a>
-                                    <p class="index-subheader" style="color: rgb(168, 168, 168);">Lorem Ipsum. Proin gravida nibh</p>
-                                    <p class="index-description">Lorem Ipsum. Proin gravida nibh velit it’s a cold world out the Lorem Ipsum. Proin gravida nibh</p>
-                                    <div class="background-3-news-item-button">
-                                        <button class="btn"><a href="#">Read more</a></button>
-                                        <div class="background-3-news-item-icons">
-                                            <div class="vertical-border" style="border-right:solid 0.5px;border-color: gray"><a href="#" class="heart"><i class="fas fa-heart"></i></a></div>
-                                            <div><a href="#"><i class="fas fa-comment"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="background-3-news-item">
-                            <a href="#">
-                                <img src="./images/news-3.png" alt="">
-                            </a>
-                            <div class="background-3-news-item-index-container">
-                                <div class="background-3-news-item-index">
-                                    <a href="#">
-                                        <h2>Porem ipsum dolor sit ame</h2>
-                                    </a>
-                                    <p class="index-subheader" style="color: rgb(168, 168, 168);">Lorem Ipsum. Proin gravida nibh</p>
-                                    <p class="index-description">Lorem Ipsum. Proin gravida nibh velit it’s a cold world out the Lorem Ipsum. Proin gravida nibh</p>
-                                    <div class="background-3-news-item-button">
-                                        <button class="btn"><a href="#">Read more</a></button>
-                                        <div class="background-3-news-item-icons">
-                                            <div class="vertical-border" style="border-right:solid 0.5px;border-color: gray"><a href="#" class="heart"><i class="fas fa-heart"></i></a></div>
-                                            <div><a href="#"><i class="fas fa-comment"></i></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
+                        
                     </div>
 
                 </div>
@@ -675,11 +222,12 @@
                                 <a href="#">
                                     <h1>Our Brands</h1>
                                 </a>
+                                @foreach($productSlides as $productSlide)
                                 <div class="floater-2-brand-index">
                                     <div class="floater-2-brand-image">
                                         <a href="#">
-                                            <img src="./images/product-1-s.jpeg">
-                                            <img src="./images/product-1-s-alt.jpeg"></a>
+                                            <img src="{{ asset('img/products/'.$productSlide->image) }}">
+                                            <img src="{{ asset('img/products/'.$productSlide->image) }}"></a>
                                     </div>
                                     <div class="floater-2-brand-info">
                                         <a href="#">
@@ -695,85 +243,12 @@
                                             <i class="fa fa-star"></i>
                                             <i class="far fa-star"></i>
                                         </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
+                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">${{ $productSlide->price }}</del>
+                                            <strong>${{ $productSlide->price*(1-$productSlide->discount/100) }}</strong></div>
                                     </div>
                                 </div>
-                                <div class="floater-2-brand-index">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-2-s.jpeg">
-                                            <img src="./images/product-2-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
-                                <div class="floater-2-brand-index">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-3-s.jpeg">
-                                            <img src="./images/product-3-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
-                                <div class="floater-2-brand-index1">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-4-s.jpeg">
-                                            <img src="./images/product-4-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
+                                @endforeach
+                               
                             </div>
                             <div class="floater-2-sale">
                                 <a href="#">
@@ -784,12 +259,12 @@
                                 <a href="#">
                                     <h1>Our Brands</h1>
                                 </a>
+                                @foreach($productSlides as $productSlide)
                                 <div class="floater-2-brand-index">
                                     <div class="floater-2-brand-image">
                                         <a href="#">
-                                            <img src="./images/product-1-s.jpeg">
-                                            <img src="./images/product-1-s-alt.jpeg">
-                                        </a>
+                                            <img src="{{ asset('img/products/'.$productSlide->image) }}">
+                                            <img src="{{ asset('img/products/'.$productSlide->image) }}"></a>
                                     </div>
                                     <div class="floater-2-brand-info">
                                         <a href="#">
@@ -805,85 +280,12 @@
                                             <i class="fa fa-star"></i>
                                             <i class="far fa-star"></i>
                                         </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
+                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">${{ $productSlide->price }}</del>
+                                            <strong>${{ $productSlide->price*(1-$productSlide->discount/100) }}</strong></div>
                                     </div>
                                 </div>
-                                <div class="floater-2-brand-index">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-2-s.jpeg">
-                                            <img src="./images/product-2-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
-                                <div class="floater-2-brand-index">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-3-s.jpeg">
-                                            <img src="./images/product-3-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
-                                <div class="floater-2-brand-index1">
-                                    <div class="floater-2-brand-image">
-                                        <a href="#">
-                                            <img src="./images/product-4-s.jpeg">
-                                            <img src="./images/product-4-s-alt.jpeg">
-                                        </a>
-                                    </div>
-                                    <div class="floater-2-brand-info">
-                                        <a href="#">
-                                            <h4 id="prod-label-s">Orange T-shirt</h4>
-                                        </a>
-                                        <a href="#" class="aloalo">
-                                            <p>Nike</p>
-                                        </a>
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </p>
-                                        <div class="floater-2-brand-info-price"><del style="color: #a9a9a9">$74.00</del>
-                                            <strong>$69.00</strong></div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                
                             </div>
                         </div>
                     </div>
