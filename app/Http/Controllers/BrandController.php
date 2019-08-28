@@ -17,7 +17,7 @@ class BrandController extends Controller
     }
     public function store(Request $request){
         $data = $request->validate([
-            'name'=>'required'
+            'name'=>'required|unique:brands,name'
         ]);
         $brand = new Brand;
         $brand->name = $data['name'];
@@ -41,7 +41,7 @@ class BrandController extends Controller
     }
     public function update(Request $request, $id){
         $data = $request->validate([
-            "name"=>"required"
+            "name"=>"required|unique:brands,name"
         ]);
         if(Brand::where('id',$id)->update(['name'=>$data['name'],'url'=>str_slug($data['name'], "-")])){
             return back()->with('success', 'Brand info has been edited');

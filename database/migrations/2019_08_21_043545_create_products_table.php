@@ -23,7 +23,12 @@ class CreateProductsTable extends Migration
             $table->float('discount');
             $table->string('image');
             $table->timestamps();
+            
         });
+        Schema::table('products', function(Blueprint $table)
+    {
+        $table->foreign('brand')->references('name')->on('brands')->onDelete('cascade')->onUpdate('cascade');
+    });
     }
 
     /**

@@ -22,7 +22,7 @@
                   <select name="brand" id="brand" style="width: 220px;">
                   <option value='' selected disabled>Select</option>
                   @foreach($brands as $brand)
-                  <option value="{{$brand->id}}">{{$brand->name}}</option>
+                  <option value="{{$brand->name}}">{{$brand->name}}</option>
                   @endforeach  
                     
                   </select>
