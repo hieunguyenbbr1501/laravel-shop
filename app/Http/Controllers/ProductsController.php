@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Auth;
@@ -17,7 +19,7 @@ class ProductsController extends Controller
         $products = Product::get();
         return view('admin.view_products')->with(compact('products'));
     }
-    public function addProducts(Request $request){
+    public function addProducts(){
         $brands = Brand::get();
     	//$brands_dropdown = "<option value='' selected disabled>Select</option>";
     	//foreach($brands as $brand){
@@ -47,13 +49,15 @@ class ProductsController extends Controller
     public function updateProducts($id = null, Request $request){
         $data = array_filter($request->only('name', 'brand', 'code', 'color', 'price', 'discount'));
         if($request->hasFile('image')){
-            $image_tmp = Input::file('image');
+            $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
                 $data['image']  =$filename;
                 $image_path = 'img/products/'.$filename;
-                Image::make($image_tmp)->save($image_path);
+                if(!Image::make($image_tmp)->save($image_path)){
+                    return back()->with('error', 'Something was wrong with image');
+                }
                 // Store image name in products table
             }
             if(Product::where('id', $id)->update($data)){
@@ -65,16 +69,8 @@ class ProductsController extends Controller
             
         }
     }
-    public function insertProducts(Request $request){
-        $data = $request->validate([
-            'product_name'=>"required",
-            'product_code'=>"required",
-            'product_color'=>"required",
-            'price'=>"required",
-            'brand'=>"required",
-            'discount'=>"required",
-            'image'=>"required"
-        ]);
+    public function insertProducts(ProductRequest $request){
+        $data = $request->all();
             $product = new Product;
             $product->name = $data['product_name'];
             $product->code = $data['product_code'];
@@ -83,12 +79,14 @@ class ProductsController extends Controller
             $product->price = $data['price'];
             $product->discount = $data['discount'];
             if($request->hasFile('image')){
-    			$image_tmp = Input::file('image');
+    			$image_tmp = $request->file('image');
     			if($image_tmp->isValid()){
     				$extension = $image_tmp->getClientOriginalExtension();
     				$filename = time().rand(10,99).'.'.$extension;
     				$image_path = 'img/products/'.$filename;
-    				Image::make($image_tmp)->save($image_path);
+    				if(!Image::make($image_tmp)->save($image_path)){
+                        return back()->with('error', 'Something was wrong with image');
+                    }
     				// Store image name in products table
     				$product->image = $filename;
     			}
@@ -97,5 +95,10 @@ class ProductsController extends Controller
                 return redirect()->back()->with('success', 'Product has been added!');
             }
             else return redirect()->back()->with('failed', 'Coudnt add a new product, please try agian');
+    }
+    public function show($code){
+        $productDetails  = Product::where('code', $code)->first();
+        $relatedProducts = Product::where('brand', $productDetails->brand)->orderBy('id','desc')->take(4)->get();
+        return view('user.view_product')->with(compact('productDetails', 'relatedProducts'));
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\NewsRequest;
 use Illuminate\Support\Facades\Input;
 use App\News;
 use Illuminate\Http\Request;
@@ -43,15 +45,10 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         //
-        $data = $request->validate([
-            'title'=> "required",
-            'sub'=>'required',
-            'content'=>'required',
-            'image'=>'required'
-        ]);
+        $data = $request->all();
         $news = new News;
         $news->title = $data['title'];
         $news->url = str_slug($data['title'], "-");
@@ -59,13 +56,15 @@ class NewsController extends Controller
         $news->content = $data['content'];
         //echo "<pre>"; print_r($data); die;
         if($request->hasFile('image')){
-            $image_tmp = Input::file('image');
+            $image_tmp = $request->file('image');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = time().rand(10,99).'.'.$extension;
                 $data['image']  =$filename;
                 $image_path = 'img/news/'.$filename;
-                Image::make($image_tmp)->save($image_path);
+                if(!Image::make($image_tmp)->save($image_path)){
+                    return back()->with('error', 'Something was wrong with image');
+                }
                 // Store image name in products table
                 
             }
@@ -87,9 +86,11 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show($url)
     {
         //
+        $newsDetails = News::where('url', $url)->first();
+        return view('user.view_news')->with(compact('newsDetails'));
     }
 
     /**
@@ -112,25 +113,27 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id = null)
+    public function update(NewsRequest $request, $id = null)
     {
         //
-        $data = $request->validate([
-            'title'=> "required",
-            'sub'=>'required',
-            'content'=>'required',
-            'banner'=>'required'
-        ]);
+        $data = $request->all();
         $data['url'] = str_slug($data['title'], "-");
         if($request->hasFile('banner')){
-            $image_tmp = Input::file('banner');
+            $image_tmp = $request->file('banner');
             if($image_tmp->isValid()){
                 $extension = $image_tmp->getClientOriginalExtension();
                 $filename = 'news'.time().rand(10,99).'.'.$extension;
                 $image_path = 'img/news/'.$filename;
-                Image::make($image_tmp)->save($image_path);
+                try{
+                    if(!Image::make($image_tmp)->save($image_path)){
+                        throw new Exception();
+                    }
                 // Store image name in products table
                 $data['banner'] = $filename;
+                }
+                catch (Exception $e){
+                    return back()->with('error', 'Something was wrong, please try again');
+                }
             }
         }
         if(News::where('id', $id)->update($data)){
@@ -153,6 +156,9 @@ class NewsController extends Controller
         //
         if(News::where('id', $id)->delete()){
             return back()->with('info', 'News has been deleted');
+        }
+        else{
+            return back()->with('error', 'Couldnt delete the news');
         }
         
     }

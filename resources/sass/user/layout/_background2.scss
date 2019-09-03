@@ -9,6 +9,16 @@
     }
 }
 
+.background-2-user {
+    z-index: 1;
+    background: url(../images/background-2.png);
+    overflow: visible;
+    @include media950 {
+        background: none;
+        height: auto;
+    }
+}
+
 .floater-1 {
     background-image: url(../images/floater-BG.png);
     top: -70px;

@@ -15,11 +15,11 @@
 
 <body>
 <div class="content">
-@include('user.user_header')
+@include('layouts.user.user_header')
 
 @yield('content')
 
-@include('user.user_footer')
+@include('layouts.user.user_footer')
 </div>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>

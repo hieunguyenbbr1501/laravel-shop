@@ -142,10 +142,10 @@
                                                 <img src="{{ asset('img/products/'.$productSlide->image) }}">
                                             </a>
                                         </div>
-                                        <a href="#">
+                                        <a href="{{ url('/product/'.$productSlide->code) }}">
                                             <h4 id="prod-label">{{ $productSlide->name }}</h4>
                                         </a>
-                                        <a href="#">
+                                        <a href="{{ url('/'.$productSlide->brands->url) }}">
                                             <p class="nike">{{ $productSlide->brand }}</p>
                                         </a>
                                         <div class="floater-stars">
@@ -187,7 +187,7 @@
                     <div class="background-3-news-container">
                     @foreach($news as $n)
                         <div class="background-3-news-item">
-                            <a href="#">
+                            <a href="{{ url('/news/'.$n->url) }}">
                                 <img src="{{ asset('img/news/'.$n->banner) }}" style="" alt="">
                             </a>
                             <div class="background-3-news-item-index-container" style="">
@@ -198,7 +198,7 @@
                                     <p class="index-subheader" style="color: rgb(168, 168, 168);">{{ $n->sub }}</p>
                                     <p class="index-description">{{ $n->content }}</p>
                                     <div class="background-3-news-item-button">
-                                        <button class="btn"><a href="#">Read more</a></button>
+                                        <button class="btn"><a href="{{ url('/news/'.$n->url) }}">Read more</a></button>
                                         <div class="background-3-news-item-icons">
                                             <div class="vertical-border" style="border-right:solid 0.5px;border-color: gray"><a href="#" class="heart"><i class="fas fa-heart"></i></a></div>
                                             <div><a href="#"><i class="fas fa-comment"></i></a></div>

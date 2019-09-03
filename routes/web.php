@@ -43,3 +43,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('admin/delete-news/{id}', 'NewsController@destroy');
 });
 Route::get('/', 'HomePageController@index');
+Route::get('/news/{url}', 'NewsController@show');
+Route::get('/{url}', 'BrandController@show');
+Route::get('/product/{code}', 'ProductsController@show');
