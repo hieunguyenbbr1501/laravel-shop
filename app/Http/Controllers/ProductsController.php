@@ -99,6 +99,9 @@ class ProductsController extends Controller
     public function show($code){
         $productDetails  = Product::where('code', $code)->first();
         $relatedProducts = Product::where('brand', $productDetails->brand)->orderBy('id','desc')->take(4)->get();
+        if(!$productDetails){
+            return back()->with('error', 'Cannot find the specific item');
+        }
         return view('user.view_product')->with(compact('productDetails', 'relatedProducts'));
     }
 }

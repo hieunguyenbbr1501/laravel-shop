@@ -90,6 +90,9 @@ class NewsController extends Controller
     {
         //
         $newsDetails = News::where('url', $url)->first();
+        if(!$news){
+            return back()->with('error', 'Cannot find the specific news');
+        }
         return view('user.view_news')->with(compact('newsDetails'));
     }
 
@@ -103,6 +106,9 @@ class NewsController extends Controller
     {
         //
         $news = News::where('id', $id)->first();
+        if(!$news){
+            return back()->with('error', 'Cannot find the specific news');
+        }
         return view('admin/edit_news')->with(compact('news'));
     }
 

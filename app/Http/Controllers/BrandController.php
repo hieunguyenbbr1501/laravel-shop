@@ -34,9 +34,13 @@ class BrandController extends Controller
         if(Brand::where(['id'=>$id])->delete()){
             return back()->with('info', 'Brand has been removed');
         }
+        else return back()->with('error', 'Please try again');
     }
     public function editBrands($id = null){
         $brandDetails = Brand::where('id', $id)->first();
+        if (!$brandDetails){
+            return back()->with('error', 'Cannot find the specific brand');
+        }
         return view('admin.edit_brands')->with(compact('brandDetails'));
     }
     public function update(BrandRequest $request, $id){
@@ -52,6 +56,9 @@ class BrandController extends Controller
     public function show($url){
         $brandDetails = Brand::with('products')->where('url', $url)->first();
         $products = Product::where('brand', $brandDetails->name)->get();
+        if (!$brandDetails){
+            return back()->with('error', 'Cannot find the specific items');
+        }
         return view('user.view_brand')->with(compact('brandDetails','products'));
     }
 }
