@@ -14,6 +14,8 @@
             <h5>Add News</h5>
           </div>
           <div class="widget-content nopadding">
+          @include('flash_message')
+
             <form class="form-horizontal" method="post" action="{{ url('/admin/store-news') }}" name="add_News" id="add_News" novalidate="novalidate" enctype="multipart/form-data"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Title</label>

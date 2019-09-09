@@ -14,6 +14,8 @@
             <h5>Add Brand</h5>
           </div>
           <div class="widget-content nopadding">
+          @include('flash_message')
+
             <form class="form-horizontal" method="post" action="{{ url('/admin/insert-brands') }}" name="add_Brand" id="add_Brand" novalidate="novalidate"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Brand Name</label>

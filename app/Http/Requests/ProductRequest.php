@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'product_color'=>"required",
             'price'=>"required",
             'brand'=>'required',
-            'discount'=>"required",
+            'discount'=>"required|numberic|gte:0|lte:100",
             'image'=>"required"
         ];
     }

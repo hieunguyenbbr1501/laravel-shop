@@ -19,8 +19,6 @@
 
 @include('layouts.admin.admin_header')
 
-@include('flash_message')
-
 @include('layouts.admin.admin_sidebar')
 
 @yield('content')

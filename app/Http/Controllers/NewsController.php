@@ -105,7 +105,7 @@ class NewsController extends Controller
     public function edit($id = null)
     {
         //
-        $news = News::where('id', $id)->first();
+        $news = News::firstOrFail($id);
         if(!$news){
             return back()->with('error', 'Cannot find the specific news');
         }

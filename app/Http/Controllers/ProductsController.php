@@ -46,7 +46,7 @@ class ProductsController extends Controller
         //}
         return view('admin.edit_products')->with(compact('brands','productDetails'));
     }
-    public function updateProducts($id = null, Request $request){
+    public function updateProducts($id = null, ProductRequest $request){
         $data = array_filter($request->only('name', 'brand', 'code', 'color', 'price', 'discount'));
         if($request->hasFile('image')){
             $image_tmp = $request->file('image');
@@ -98,10 +98,14 @@ class ProductsController extends Controller
     }
     public function show($code){
         $productDetails  = Product::where('code', $code)->first();
-        $relatedProducts = Product::where('brand', $productDetails->brand)->orderBy('id','desc')->take(4)->get();
         if(!$productDetails){
             return back()->with('error', 'Cannot find the specific item');
         }
-        return view('user.view_product')->with(compact('productDetails', 'relatedProducts'));
+        else{
+            $relatedProducts = Product::where('brand', $productDetails->brand)->orderBy('id','desc')->take(4)->get();
+
+            return view('user.view_product')->with(compact('productDetails', 'relatedProducts'));
+        }
+        
     }
 }

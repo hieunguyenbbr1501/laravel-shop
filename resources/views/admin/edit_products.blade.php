@@ -15,6 +15,8 @@
             <h5>Edit Product</h5>
           </div>
           <div class="widget-content nopadding">
+          @include('flash_message')
+
             <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{ url('/admin/update-products/'.$productDetails->id) }}" name="add_product" id="add_product" novalidate="novalidate"> {{ csrf_field() }}
               <div class="control-group">
                 <label class="control-label">Brand</label>
